@@ -135,8 +135,7 @@ def show_post(post_id):
     form = CommentForm()
     if form.validate_on_submit():
         if current_user.is_authenticated:
-            text = form.comment.data
-            new_comment = Comment(text=text, author=current_user, parent_post=requested_post)
+            new_comment = Comment(text=form.comment.data, author=current_user, parent_post=requested_post)
             db.session.add(new_comment)
             db.session.commit()
         else:
